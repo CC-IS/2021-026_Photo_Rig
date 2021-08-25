@@ -1,0 +1,19 @@
+{
+  "name": "2021-026_photo_rig",
+  "version": "1.0.0",
+  "description": "Photo rig for Geology dept.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CC-IS/2021-026_Photo_Rig.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CC-IS/2021-026_Photo_Rig/issues"
+  },
+  "homepage": "https://github.com/CC-IS/2021-026_Photo_Rig#readme"
+}
