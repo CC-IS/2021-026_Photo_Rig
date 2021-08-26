@@ -3,6 +3,7 @@ var gphoto2 = require('gphoto2');
 var GPhoto = new gphoto2.GPhoto2();
 var camera = null;
 GPhoto.setLogLevel(1);
+displayVideo();
 GPhoto.on('log', function (level, domain, message) {
     console.log(domain, message);
 });
@@ -22,4 +23,18 @@ function takepicture() {
     camera && camera.takePicture({ download: true }, function (er, data) {
         fs.writeFileSync(__dirname + '/picture.jpg', data);
     });
+}
+
+function displayVideo() {
+    var video = document.querySelector("#videoElement");
+
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+                console.log("Something went wrong!");
+            });
+    }
 }
