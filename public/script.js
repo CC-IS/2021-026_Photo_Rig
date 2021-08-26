@@ -13,7 +13,8 @@ GPhoto.list(function (list) {
     };
     var camera = list[0];
     console.log('Found', camera.model);
-    takePicture(camera)
+    console.log('Found', camera);
+    // takePicture(camera)
 });
 
 
