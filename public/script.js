@@ -5,8 +5,12 @@ GPhoto.setLogLevel(1);
 GPhoto.on('log', function (level, domain, message) {
     console.log(domain, message);
 });
+
 GPhoto.list(function (list) {
-    if (list.length === 0) return;
+    if (list.length === 0) {
+        console.log("No cameras found");
+        return
+    };
     var camera = list[0];
     console.log('Found', camera.model);
     takePicture(camera)
