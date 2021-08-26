@@ -13,11 +13,11 @@ GPhoto.list(function (list) {
     };
     var camera = list[0];
     console.log('Found', camera.model);
-    takePicture(camera)
+    takepicture(camera)
 });
 
 
-function takePicture(camera) {
+function takepicture(camera) {
     camera.takePicture({ download: true }, function (er, data) {
         fs.writeFileSync(__dirname + '/picture.jpg', data);
     });
