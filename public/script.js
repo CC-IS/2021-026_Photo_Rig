@@ -25,6 +25,11 @@ function takepicture() {
     });
 }
 
+function setFocus(focus) {
+    camera.setConfigValue("manualfocusdrive", focus, function (er) {
+        er && console.log(er)
+    })
+}
 function displayVideo() {
     var video = document.querySelector("#videoElement");
 
