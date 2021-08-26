@@ -22,6 +22,7 @@ app.whenReady().then(() => {
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
+    app.allowRendererProcessReuse = false;
 })
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
