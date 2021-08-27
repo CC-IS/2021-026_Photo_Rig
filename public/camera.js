@@ -6,24 +6,23 @@ class camera {
     constructor() {
         var fs = require('fs');
         this.GPhoto = new gphoto2.GPhoto2();
-        GPhoto.setLogLevel(1);
+        this.GPhoto.setLogLevel(1);
         this.initCam()
     }
 
     initCam() {
-        GPhoto.list(function (list) {
+        this.GPhoto.list(function (list) {
             if (list.length === 0) {
                 console.log("No cameras found");
                 return
             };
             this.camera = list[0];
-            console.log('Found', camera.model);
+            console.log('Found', this.camera.model);
         });
     }
 
 
     takepicture() {
-        initCam()
         this.camera && this.camera.takePicture({ download: true }, function (er, data) {
             er && console.error(er);
             fs.writeFileSync(__dirname + '/picture.jpg', data);
