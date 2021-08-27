@@ -13,8 +13,8 @@ GPhoto.list(function (list) {
     console.log('Found', camera.model);
 });
 
-exprots.takePicture = function takepicture() {
-    camera && camera.takePicture({ download: true  }, function (er, data) {
+exports.takePicture = function takepicture() {
+    camera && camera.takePicture({ download: true }, function (er, data) {
         er && console.error(er);
         fs.writeFileSync(__dirname + '/picture.jpg', data);
     });
