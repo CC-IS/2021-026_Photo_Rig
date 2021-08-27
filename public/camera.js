@@ -1,4 +1,5 @@
-exports.camera = class camera {
+class camera {
+
     constructor() {
         var fs = require('fs');
         var gphoto2 = require('gphoto2');
@@ -67,3 +68,5 @@ exports.camera = class camera {
     }
 
 }
+
+exports.camera = camera;
