@@ -4,16 +4,21 @@ var GPhoto = new gphoto2.GPhoto2();
 var camera = null;
 GPhoto.setLogLevel(1);
 const { exec } = require("child_process");
-GPhoto.list(function (list) {
-    if (list.length === 0) {
-        console.log("No cameras found");
-        return
-    };
-    camera = list[0];
-    console.log('Found', camera.model);
-});
+
+function initCam() {
+    GPhoto.list(function (list) {
+        if (list.length === 0) {
+            console.log("No cameras found");
+            return
+        };
+        camera = list[0];
+        console.log('Found', camera.model);
+    });
+}
+
 
 exports.takePicture = function takepicture() {
+    initCam()
     camera && camera.takePicture({ download: true }, function (er, data) {
         er && console.error(er);
         fs.writeFileSync(__dirname + '/picture.jpg', data);
@@ -32,11 +37,11 @@ exports.setFocus = function setFocus(focus) {
 exports.connectCameraDev = function connectCameraDev() {
     let process = exec(`gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video1`, (error, stdout, stderr) => {
         if (error) {
-            // console.log(`error: ${error.message}`);
+            console.log(`error: ${error.message}`);
             return;
         }
         if (stderr) {
-            // console.log(`stderr: ${stderr}`);
+            console.log(`stderr: ${stderr}`);
             return;
         }
     });
