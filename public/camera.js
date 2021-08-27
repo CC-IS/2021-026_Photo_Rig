@@ -14,7 +14,7 @@ GPhoto.list(function (list) {
 });
 
 exprots.takePicture = function takepicture() {
-    camera && camera.takePicture({ download: true }, function (er, data) {
+    camera && camera.takePicture({ download: true  }, function (er, data) {
         er && console.error(er);
         fs.writeFileSync(__dirname + '/picture.jpg', data);
     });
