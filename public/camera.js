@@ -1,5 +1,7 @@
 const { exec } = require("child_process");
 var gphoto2 = require('gphoto2');
+const { spawn } = require('child_process');
+
 
 class camera {
 
@@ -63,7 +65,8 @@ class camera {
         }
     }
     stopVideo() {
-        this.process.kill('Term')
+        const grep = spawn('grep', ['vcodec']);
+        grep.kill('SIGHUP');
     }
 
 }
