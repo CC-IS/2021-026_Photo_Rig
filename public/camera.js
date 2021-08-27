@@ -1,12 +1,13 @@
+const { exec } = require("child_process");
+var gphoto2 = require('gphoto2');
+
 class camera {
 
     constructor() {
         var fs = require('fs');
-        var gphoto2 = require('gphoto2');
         var GPhoto = new gphoto2.GPhoto2();
         var camera = null;
         GPhoto.setLogLevel(1);
-        const { exec } = require("child_process");
         initCam()
     }
 
