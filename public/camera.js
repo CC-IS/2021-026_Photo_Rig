@@ -5,10 +5,9 @@ class camera {
 
     constructor() {
         var fs = require('fs');
-        var GPhoto = new gphoto2.GPhoto2();
-        var camera = null;
+        this.GPhoto = new gphoto2.GPhoto2();
         GPhoto.setLogLevel(1);
-        initCam()
+        this.initCam()
     }
 
     initCam() {
@@ -17,7 +16,7 @@ class camera {
                 console.log("No cameras found");
                 return
             };
-            camera = list[0];
+            this.camera = list[0];
             console.log('Found', camera.model);
         });
     }
@@ -25,17 +24,17 @@ class camera {
 
     takepicture() {
         initCam()
-        camera && camera.takePicture({ download: true }, function (er, data) {
+        this.camera && this.camera.takePicture({ download: true }, function (er, data) {
             er && console.error(er);
             fs.writeFileSync(__dirname + '/picture.jpg', data);
         });
     }
 
     setFocus(focus) {
-        camera.setConfigValue("viewfinder", 1, function (er) {
+        this.camera.setConfigValue("viewfinder", 1, function (er) {
             er && console.log(er);
         })
-        camera.setConfigValue("manualfocusdrive", focus, function (er) {
+        this.camera.setConfigValue("manualfocusdrive", focus, function (er) {
             er && console.log(er)
         })
     }
