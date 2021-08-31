@@ -10,16 +10,33 @@
 </head>
 
 <body>
-    <h1>Document</h1>
-    <video autoplay="true" id="videoElement">
-    </video>
-    <button onclick="setFocus(this.innerText)">Near 3</button>
-    <button onclick="setFocus(this.innerText)">Near 2 </button>
-    <button onclick="setFocus(this.innerText)">Near 1</button>
-    <button onclick="setFocus(this.innerText)">Far 1</button>
-    <button onclick="setFocus(this.innerText)">Far 2</button>
-    <button onclick="setFocus(this.innerText)">Far 3</button>
-    <button onclick="takepicture()">Take picture</button>
+
+    <div class="row">
+
+        <video autoplay="true" id="videoElement"></video>
+
+        <div class="col" style="padding: 0%; padding-left: 1em;">
+            <div class="rowbutton">
+                <button class=btn id="liveView">liveView</button>
+                <button class=btn id=setFocus>SetFocus</button>
+                <button class=btn id=showPictures>Show pictures</button>
+            </div>
+
+            <div class="focusSetters hidden">
+                <button onclick="setFocus(this.innerText)">Near 3</button>
+                <button onclick="setFocus(this.innerText)">Near 2 </button>
+                <button onclick="setFocus(this.innerText)">Near 1</button>
+                <button onclick="setFocus(this.innerText)">Far 1</button>
+                <button onclick="setFocus(this.innerText)">Far 2</button>
+                <button onclick="setFocus(this.innerText)">Far 3</button>
+                <button onclick="takepicture()">Take picture</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
     <script src="./script.js"></script>
 </body>
 

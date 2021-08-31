@@ -1,11 +1,44 @@
 #container {
-	margin: 0px auto;
+	/* margin: 0px auto; */
 	width: 500px;
 	height: 375px;
 	border: 10px #333 solid;
 }
 #videoElement {
-	width: 500px;
-	height: 375px;
+	width: 50%;
+	height: auto;
 	background-color: #666;
+}
+.row{
+	display: flex;
+	flex-direction: row;
+	padding: .5em;
+}
+/* .row *{
+	align-items: baseline;
+	justify-content: space-between;
+} */
+.hidden {
+	display: none;
+}
+.col{
+	width: 50%;
+}
+
+.btn{
+	display: inline;
+	width: 32.5%;
+	background-color: salmon;
+	border: 0;
+	margin-bottom: 1em;
+}
+.btn:hover{
+	display: inline;
+	width: 32.5%;
+	background-color: orangered;
+	border: 0;
+}
+
+.Active{
+    border-bottom: 2px solid lime;
 }
