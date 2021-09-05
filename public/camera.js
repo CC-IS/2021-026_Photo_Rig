@@ -2,14 +2,37 @@ const { exec } = require("child_process");
 var gphoto2 = require('gphoto2');
 const { spawn } = require('child_process');
 var fs = require('fs');
+const EventEmitter = require('events');
+const EventEmitter = require('events');
 
+const emitter = new EventEmitter();
 
 class camera {
 
     constructor() {
+        this.emitter = new EventEmitter();
+        let _this = this;
         this.GPhoto = new gphoto2.GPhoto2();
         this.GPhoto.setLogLevel(1);
         this.initCam()
+        document.querySelector('#pause').addEventListener('click', () => {
+            this.emitter.emit('pause');
+        })
+    }
+    test() {
+        let I = 0;
+        while (I < 1) {
+            console.log('Taking pictures');
+            this.emitter.on('pause', () => {
+                setTimeout(() => {
+                    console.log('finished waiting');
+                }, 10000);
+            })
+            setTimeout(() => {
+                true;
+            }, 1000);
+        }
+
     }
     /**
      * Initializes the camera as a device and prepares for taking pictures and setting focus etc.
@@ -89,6 +112,42 @@ class camera {
         exec("killall gphoto2", () => {
             this.initCam()
         })
+    }
+    /**
+     * Starts taking picutres and moving on the rig
+     * @param {Number} steps the number of steps the camera has to move 
+     * @param {Number} n the near point of the focus represented in a +ve number 
+     * @param {Number} f the far point of the focus represented in a +ve number
+     */
+    start(steps, n, f) {
+        let position = 0;
+        const focusSpan = n + f;
+        let currentFocus = 0;
+        let _this = this;
+        for (let i = 0; i < n; i++) {
+            this.setFocus('Near 1')
+        }
+        while (position < steps) {
+            if (position % 2) {
+                for (let focus = 0; focus < focusSpan; focus++) {
+                    _this.takePicture(position, focus, 'Pictures')
+                    _this.setFocus('Far 1')
+                }
+            }
+            else {
+                for (let focus = focusSpan; focus > 0; focus--) {
+                    _this.takePicture(position, focus, 'Pictures')
+                    _this.setFocus('Near 1')
+                }
+            }
+            // arduino.emit(move)
+            position++;
+        }
+
+    }
+
+    takeArrPictures(number, direction) {
+        this.takepicture("")
     }
 
 }
