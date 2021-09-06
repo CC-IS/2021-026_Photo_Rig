@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/CC-IS/2021-026_Photo_Rig#readme",
   "devDependencies": {
-    "electron": "^13.2.2"
+    "electron": "^13.3.0"
   }
 }
