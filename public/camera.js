@@ -28,15 +28,16 @@ class camera {
      * Initializes the camera as a device and prepares for taking pictures and setting focus etc.
      */
     initCam() {
+        let _this = this;
         this.GPhoto.list(function (list) {
             if (list.length === 0) {
-                this.serial.innerText = 'No Cameras Found';
+                _this.serial.innerText = 'No Cameras Found';
                 console.log("No cameras found");
                 return
             };
-            this.camera = list[0];
-            this.serial.innerText = `Found ${this.camera.model}`
-            console.log('Found', this.camera.model);
+            _this.camera = list[0];
+            _this.serial.innerText = `Found ${_this.camera.model}`
+            console.log('Found', _this.camera.model);
         });
     }
     /**
@@ -51,7 +52,7 @@ class camera {
             let operationNumber = 0
             fs.writeFileSync(__dirname + `/${folderName}` `/${position}-${focus}.jpg`, data);
         });
-        !this.camera && (console.log('Camera is undefined.') && this.serial.innerText = "Camera is undefined, can't take picture")
+        !this.camera && console.log('Camera is undefined.')
     }
     /**
      * 
