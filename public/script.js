@@ -3,7 +3,7 @@ const cam = new camera();
 var fs = require('fs');
 var gphoto2 = require('gphoto2');
 
-takepicture = (9, 9, 'Testing') => cam.takePicture;
+takepicture = (a, b, c) => cam.takePicture(a, b, c);
 setFocus = (focus) => cam.setFocus;
 
 let setFocusE = document.querySelector("#setFocus")
