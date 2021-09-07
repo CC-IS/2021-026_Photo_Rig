@@ -18,21 +18,7 @@ class camera {
             this.emitter.emit('pause');
         })
     }
-    test() {
-        let I = 0;
-        while (I < 1) {
-            console.log('Taking pictures');
-            this.emitter.on('pause', () => {
-                setTimeout(() => {
-                    console.log('finished waiting');
-                }, 10000);
-            })
-            setTimeout(() => {
-                true;
-            }, 1000);
-        }
 
-    }
     /**
      * Initializes the camera as a device and prepares for taking pictures and setting focus etc.
      */
@@ -56,11 +42,9 @@ class camera {
         this.camera && this.camera.takePicture({ download: true }, function (er, data) {
             er && console.error(er);
             let operationNumber = 0
-            // if (!fs.existsSync(__dirname + `/${folderName}`)) {
-            //     operationNumber++
-            // }
             fs.writeFileSync(__dirname + `/${folderName}` `/${position}-${focus}.jpg`, data);
         });
+        !this.camera && console.log('Camera is undefined.')
     }
     /**
      * 
