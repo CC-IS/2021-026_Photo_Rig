@@ -72,10 +72,10 @@ class camera {
      */
     setupFocus(focus) {
         if (focus[0] == 'N') {
-            this.N += focus[-1]
+            this.N += Number(focus[-1])
         }
         if (focus[0] == 'F') {
-            this.F += focus[-1]
+            this.F += Number(focus[-1])
         }
         this.camera.setConfigValue("viewfinder", 1, function (er) {
             er && console.log(er);
