@@ -3,7 +3,6 @@ var gphoto2 = require('gphoto2');
 const { spawn } = require('child_process');
 var fs = require('fs');
 const EventEmitter = require('events');
-const EventEmitter = require('events');
 
 const emitter = new EventEmitter();
 
