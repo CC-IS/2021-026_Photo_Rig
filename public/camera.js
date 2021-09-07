@@ -17,6 +17,8 @@ class camera {
         document.querySelector('#pause').addEventListener('click', () => {
             this.emitter.emit('pause');
         })
+        this.F = 0;
+        this.N = 0;
     }
 
     /**
@@ -51,6 +53,24 @@ class camera {
      * @param {String} focus the step to give to the focus motor "Near 1", "Far 3" ... 
      */
     setFocus(focus) {
+        this.camera.setConfigValue("viewfinder", 1, function (er) {
+            er && console.log(er);
+        })
+        this.camera.setConfigValue("manualfocusdrive", focus, function (er) {
+            er && console.log(er)
+        })
+    }
+    /**
+     * 
+     * @param {String} focus the focus move 
+     */
+    setupFocus(focus) {
+        if (focus[0] == 'N') {
+            this.N += focus[-1]
+        }
+        if (focus[0] == 'F') {
+            this.F += focus[-1]
+        }
         this.camera.setConfigValue("viewfinder", 1, function (er) {
             er && console.log(er);
         })
@@ -102,7 +122,9 @@ class camera {
      * @param {Number} n the near point of the focus represented in a +ve number 
      * @param {Number} f the far point of the focus represented in a +ve number
      */
-    start(steps, n, f) {
+    start(steps) {
+        n = this.N;
+        f = this.F
         let position = 0;
         const focusSpan = n + f;
         let currentFocus = 0;
