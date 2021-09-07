@@ -1,5 +1,4 @@
 const { camera } = require("./camera")
-const cam = new camera();
 var fs = require('fs');
 var gphoto2 = require('gphoto2');
 
@@ -10,9 +9,10 @@ let showPictures = document.querySelector("#showPictures")
 let focusSetters = document.querySelector(".focusSetters")
 let serialE = document.querySelector('#serial')
 
+const cam = new camera(serialE);
 
 setFocusE.addEventListener('click', () => {
-    focusSetters.querySelector('#near').toggle('hidden')
+    focusSetters.classList.toggle('hidden')
     serialE.innerText = 'Please set the near point of focus first:'
 
     // change status to enable and others to diable

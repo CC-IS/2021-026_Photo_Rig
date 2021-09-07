@@ -8,12 +8,15 @@ const emitter = new EventEmitter();
 
 class camera {
 
-    constructor() {
+    constructor(serial) {
+        this.serial = serial;
         this.emitter = new EventEmitter();
         let _this = this;
         this.GPhoto = new gphoto2.GPhoto2();
         this.GPhoto.setLogLevel(1);
         this.initCam()
+        console.log(this.camera);
+        this.serial.innerText = `${this.camera}`
         document.querySelector('#pause').addEventListener('click', () => {
             this.emitter.emit('pause');
         })
@@ -27,10 +30,12 @@ class camera {
     initCam() {
         this.GPhoto.list(function (list) {
             if (list.length === 0) {
+                this.serial.innerText = 'No Cameras Found';
                 console.log("No cameras found");
                 return
             };
             this.camera = list[0];
+            this.serial.innerText = `Found ${this.camera.model}`
             console.log('Found', this.camera.model);
         });
     }
@@ -46,7 +51,7 @@ class camera {
             let operationNumber = 0
             fs.writeFileSync(__dirname + `/${folderName}` `/${position}-${focus}.jpg`, data);
         });
-        !this.camera && console.log('Camera is undefined.')
+        !this.camera && (console.log('Camera is undefined.') && this.serial.innerText = "Camera is undefined, can't take picture")
     }
     /**
      * 
