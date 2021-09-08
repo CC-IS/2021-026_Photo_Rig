@@ -178,7 +178,7 @@ class camera {
         this.takepicture("")
     }
     updateLiveView() {
-        camera.takePicture({
+        this.camera.takePicture({
             preview: true,
             targetPath: '/tmp/foo.XXXXXX'
         }, function (er, tmpname) {
