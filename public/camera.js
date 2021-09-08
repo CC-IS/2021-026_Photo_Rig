@@ -68,14 +68,25 @@ class camera {
     }
     /**
      * 
-     * @param {String} focus the focus move 
+     * @param {String} focus the focus move
+     * @param {String} nOrf N for near, F for far, for setting up the focus points
      */
-    setupFocus(focus) {
-        if (focus[0] == 'N') {
-            this.N += Number(focus[-1])
+    setupFocus(focus, nOrf) {
+        if (nOrf === 'N') {
+            if (focus[0] == 'N') {
+                this.N += Number(focus[-1])
+            }
+            if (focus[0] == 'F') {
+                this.N -= Number(focus[-1])
+            }
         }
-        if (focus[0] == 'F') {
-            this.F += Number(focus[-1])
+        else if (nOrf === 'F') {
+            if (focus[0] == 'F') {
+                this.F += Number(focus[-1])
+            }
+            if (focus[0] == 'N') {
+                this.F -= Number(focus[-1])
+            }
         }
         this.camera.setConfigValue("viewfinder", 1, function (er) {
             er && console.log(er);
@@ -83,6 +94,11 @@ class camera {
         this.camera.setConfigValue("manualfocusdrive", focus, function (er) {
             er && console.log(er)
         })
+    }
+    goToNeutral() {
+        for (let i = 0; i < this.N; i++) {
+            this.setFocus('Far 1')
+        }
     }
     /**
      * connects the camera as a webcam in order to view the liveview in the brower.

@@ -24,14 +24,16 @@
 
             <div class="focusSetters hidden">
                 <div class="near"></div>
-                <button onclick="setupFocus(this.innerText)">Near 3</button>
-                <button onclick="setupFocus(this.innerText)">Near 2 </button>
-                <button onclick="setupFocus(this.innerText)">Near 1</button>
-                <button onclick="setupFocus(this.innerText)">Far 1</button>
-                <button onclick="setupFocus(this.innerText)">Far 2</button>
-                <button onclick="setupFocus(this.innerText)">Far 3</button>
-                <button onclick="start(3)">Start</button>
-                <!-- <button id=takepic onclick="takepicture()">Take picture</button> -->
+                <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Near
+                    3</button>
+                <button current=N onclick="setupFocus(this.innerText, this.current)">Near 2 </button>
+                <button current=N onclick="setupFocus(this.innerText, this.current)">Near 1</button>
+                <button current=N onclick="setupFocus(this.innerText, this.current)">Far 1</button>
+                <button current=N onclick="setupFocus(this.innerText, this.current)">Far 2</button>
+                <button current=N onclick="setupFocus(this.innerText, this.current)">Far 3</button>
+                <button id=configmNearPointFocus>Confirm Near Point Focus</button>
+                <button class=hidden onclick="start(3)">Start</button>
+                <!-- <button id=takepic current=N onclick="takepicture()">Take pictu, this.currentre</button> -->
             </div>
         </div>
 

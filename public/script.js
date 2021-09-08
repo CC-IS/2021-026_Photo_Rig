@@ -8,9 +8,16 @@ let liveview = document.querySelector("#liveView")
 let showPictures = document.querySelector("#showPictures")
 let focusSetters = document.querySelector(".focusSetters")
 let serialE = document.querySelector('#serial')
-
+let confirmNearPointFocus = document.querySelector('#configmNearPointFocus');
 const cam = new camera(serialE);
+let buttons = document.querySelectorAll('.focusSelection')
 
+confirmNearPointFocus.addEventListener('click', () => {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute('current', F)
+        cam.goToNeutral();
+    }
+})
 setFocusE.addEventListener('click', () => {
     focusSetters.classList.toggle('hidden')
     serialE.innerText = 'Please set the near point of focus first:'
@@ -29,8 +36,8 @@ liveview.addEventListener('click', () => {
 function takepicture(a, b, c) {
     cam.takePicture(a, b, c);
 }
-function setupFocus(focus) {
-    cam.setupFocus(focus)
+function setupFocus(focus, nOrf) {
+    cam.setupFocus(focus, nOrf)
 }
 
 function start() {
