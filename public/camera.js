@@ -3,6 +3,7 @@ var gphoto2 = require('gphoto2');
 const { spawn } = require('child_process');
 var fs = require('fs');
 const EventEmitter = require('events');
+const path = require("path");
 
 const emitter = new EventEmitter();
 
@@ -182,7 +183,8 @@ class camera {
             preview: true,
             targetPath: '/tmp/foo.XXXXXX'
         }, function (er, tmpname) {
-            fs.renameSync(tmpname, __dirname + '/previews/picture.jpg');
+            let pathpreview = path.join(__dirname, previews)
+            fs.renameSync(tmpname, pathpreview + '/picture.jpg');
         });
         var timestamp = new Date().getTime();
         var img = document.getElementById("preview");

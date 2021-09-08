@@ -42,3 +42,6 @@
 .Active{
     border-bottom: 2px solid lime;
 }
+#preview{
+	width: 500px;
+}
