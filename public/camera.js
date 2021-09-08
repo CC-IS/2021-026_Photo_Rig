@@ -72,6 +72,7 @@ class camera {
      * @param {String} nOrf N for near, F for far, for setting up the focus points
      */
     setupFocus(focus, nOrf) {
+        this.updateLiveView();
         if (nOrf === 'N') {
             if (focus[0] == 'N') {
                 this.N += Number(focus[-1])
@@ -175,6 +176,18 @@ class camera {
 
     takeArrPictures(number, direction) {
         this.takepicture("")
+    }
+    updateLiveView() {
+        camera.takePicture({
+            preview: true,
+            targetPath: '/tmp/foo.XXXXXX'
+        }, function (er, tmpname) {
+            fs.renameSync(tmpname, __dirname + '/previews/picture.jpg');
+        });
+        var timestamp = new Date().getTime();
+        var img = document.getElementById("preview");
+        img.src = "./previews/picture.jpg?t=" + timestamp;
+
     }
 
 }

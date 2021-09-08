@@ -13,8 +13,8 @@
 
     <div class="row">
 
-        <video autoplay="true" id="videoElement"></video>
-
+        <video class=hidden autoplay="true" id="videoElement"></video>
+        <img id=preview src="./previews/picture.jpg" alt="LiveViewPicutre">
         <div class="col" style="padding: 0%; padding-left: 1em;">
             <div class="rowbutton">
                 <button class=btn id="liveView">liveView</button>
@@ -32,7 +32,7 @@
                 <button current=N onclick="setupFocus(this.innerText, this.current)">Far 2</button>
                 <button current=N onclick="setupFocus(this.innerText, this.current)">Far 3</button>
                 <button id=configmNearPointFocus>Confirm Near Point Focus</button>
-                <button class=hidden onclick="start(3)">Start</button>
+                <button id=start class=hidden onclick="start(3)">Start</button>
                 <!-- <button id=takepic current=N onclick="takepicture()">Take pictu, this.currentre</button> -->
             </div>
         </div>

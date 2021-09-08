@@ -1,8 +1,6 @@
 const { camera } = require("./camera")
 var fs = require('fs');
 var gphoto2 = require('gphoto2');
-
-
 let setFocusE = document.querySelector("#setupFocus")
 let liveview = document.querySelector("#liveView")
 let showPictures = document.querySelector("#showPictures")
@@ -11,11 +9,13 @@ let serialE = document.querySelector('#serial')
 let confirmNearPointFocus = document.querySelector('#configmNearPointFocus');
 const cam = new camera(serialE);
 let buttons = document.querySelectorAll('.focusSelection')
-
+let startButton = document.querySelector('#start');
 confirmNearPointFocus.addEventListener('click', () => {
     for (let i = 0; i < buttons.length; i++) {
-        buttons[i].setAttribute('current', F)
+        buttons[i].setAttribute('current', 'F')
         cam.goToNeutral();
+        serialE.innerText = 'Now please set the far point';
+        startButton.classList.toggle('hidden');
     }
 })
 setFocusE.addEventListener('click', () => {
@@ -42,4 +42,7 @@ function setupFocus(focus, nOrf) {
 
 function start() {
     cam.start()
+}
+window.onload = function () {
+    cam.updateLiveView();
 }
