@@ -13,8 +13,8 @@
 
     <div class="row">
 
-        <video class=hidden autoplay="true" id="videoElement"></video>
-        <img id=preview src="./previews/picture.jpg" alt="LiveViewPicutre">
+        <video autoplay="true" id="videoElement"></video>
+        <img id=preview class=hidden src="./previews/picture.jpg" alt="LiveViewPicutre">
         <div class="col" style="padding: 0%; padding-left: 1em;">
             <div class="rowbutton">
                 <button class=btn id="liveView">liveView</button>
@@ -26,14 +26,17 @@
                 <div class="near"></div>
                 <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Near
                     3</button>
-                <button current=N onclick="setupFocus(this.innerText, this.current)">Near 2 </button>
-                <button current=N onclick="setupFocus(this.innerText, this.current)">Near 1</button>
-                <button current=N onclick="setupFocus(this.innerText, this.current)">Far 1</button>
-                <button current=N onclick="setupFocus(this.innerText, this.current)">Far 2</button>
-                <button current=N onclick="setupFocus(this.innerText, this.current)">Far 3</button>
+                <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Near 2
+                </button>
+                <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Near
+                    1</button>
+                <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Far 1</button>
+                <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Far 2</button>
+                <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Far 3</button>
                 <button id=configmNearPointFocus>Confirm Near Point Focus</button>
                 <button id=start class=hidden onclick="start(3)">Start</button>
-                <!-- <button id=takepic current=N onclick="takepicture()">Take pictu, this.currentre</button> -->
+                <button class=toggler id="stop" onclick="signalStop()">STOP</button>
+                <button onclick="signalPause(this)">PAUSE </button>
             </div>
         </div>
 
