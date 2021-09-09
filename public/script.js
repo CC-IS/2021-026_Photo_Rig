@@ -8,15 +8,18 @@ let focusSetters = document.querySelector(".focusSetters")
 let serialE = document.querySelector('#serial')
 let confirmNearPointFocus = document.querySelector('#configmNearPointFocus');
 const cam = new camera(serialE);
-let buttons = document.querySelectorAll('.focusSelection')
+let buttons = document.querySelector('.focusSelection')
 let startButton = document.querySelector('#start');
+
 confirmNearPointFocus.addEventListener('click', () => {
     for (let i = 0; i < buttons.length; i++) {
-        buttons[i].setAttribute('current', 'F')
-        cam.goToNeutral();
-        serialE.innerText = 'Now please set the far point';
-        startButton.classList.toggle('hidden');
+        buttons.children[i].setAttribute('current', 'F')
     }
+    startButton.classList.toggle('hidden');
+    confirmNearPointFocus.classList.toggle('hidden')
+    serialE.innerText = 'Now please set the far point';
+    cam.goToNeutral();
+
 })
 setFocusE.addEventListener('click', () => {
     focusSetters.classList.toggle('hidden')

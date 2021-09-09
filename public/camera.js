@@ -24,6 +24,9 @@ class camera {
         this.F = 0;
         this.N = 0;
     }
+    updateSerial(text) {
+        this.serial.innerText = text;
+    }
 
     /**
      * Initializes the camera as a device and prepares for taking pictures and setting focus etc.
@@ -75,6 +78,7 @@ class camera {
     setupFocus(focus, nOrf) {
         this.updateLiveView();
         if (nOrf === 'N') {
+            this.updateSerial(`Updating serial with this.N + ${Number(focus[-1])}`)
             if (focus[0] == 'N') {
                 this.N += Number(focus[-1])
             }
@@ -83,6 +87,8 @@ class camera {
             }
         }
         else if (nOrf === 'F') {
+            this.updateSerial(`Updating serial with this.N + ${Number(focus[-1])}`)
+
             if (focus[0] == 'F') {
                 this.F += Number(focus[-1])
             }
@@ -147,8 +153,8 @@ class camera {
      * @param {Number} f the far point of the focus represented in a +ve number
      */
     start(steps) {
-        n = this.N;
-        f = this.F
+        let n = this.N;
+        let f = this.F
         let position = 0;
         const focusSpan = n + f;
         let currentFocus = 0;
