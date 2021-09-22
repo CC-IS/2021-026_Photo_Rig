@@ -7,9 +7,10 @@ const path = require("path");
 
 
 class camera {
+
     /**
      * 
-     * @param {HTML element} serial The in-brower element used as serial. 
+     * @param {HTML element in-browser used as serial. 
      * @param {EventEmitter} emitter The instance of event emitted to connect to the camera instance. 
      */
     constructor(serial, emitter) {

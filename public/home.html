@@ -13,15 +13,27 @@
 
     <div class="row">
 
-        <video autoplay="true" id="videoElement"></video>
-        <img id=preview class=hidden src="./previews/picture.jpg" alt="LiveViewPicutre">
-        <div class="col" style="padding: 0%; padding-left: 1em;">
+
+        <div class='leftContainer'>
+            <div id='picturePreview' style="display: none;">
+                <img id=preview class=hidden src='' alt="LiveViewPicutre">
+            </div>
+            <div id=videoPreview>
+                <video autoplay="true" id="videoElement"></video>
+            </div>
+            <div id="picturesTaken" style="display: none;">
+                <div>PHOTOS LIKE THIS</div>
+            </div>
+        </div>
+        <div class="rightContainer">
             <div class="rowbutton">
                 <button class=btn id="liveView">liveView</button>
                 <button class=btn id=setupFocus>setupFocus</button>
                 <button class=btn id=showPictures>Show pictures</button>
-            </div>
+                <button id=pause>Pause</button>
+                <button onclick="reconnectCam()">Reconnect Camera</button>
 
+            </div>
             <div class="focusSetters hidden">
                 <div class="near"></div>
                 <button class=focusSelection current=N onclick="setupFocus(this.innerText, this.current)">Near
@@ -41,7 +53,6 @@
         </div>
 
     </div>
-    <button id=pause>Pause</button>
     <p id="serial"></p>
 
 

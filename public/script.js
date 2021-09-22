@@ -23,11 +23,12 @@ const cam = new camera(serialE, emitter);
  * Initializes the preview video.
  */
 window.onload = function () {
-    cam.camera && cam.displayVideo()
-    // preview video => cam.displayVideo()
-    // preview image => cam.camera && cam.updateLiveView();
+    cam.camera && cam.displayVideo();
 }
 
+function reconnectCam() {
+    cam.initCam();
+}
 function signalStop() {
     emitter.emit('stop')
 }
@@ -85,6 +86,4 @@ showPictures.addEventListener('click', () => {
 liveview.addEventListener('click', () => {
     signalPause(document.querySelector('.toggler'))
     cam.displayVideo();
-    // Show liveview in here
-    // change status
 })
