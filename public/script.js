@@ -2,6 +2,7 @@ const { camera } = require("./camera")
 var fs = require('fs');
 var gphoto2 = require('gphoto2');
 const EventEmitter = require('events');
+var {LinearTrack} = require('./linearTrack.js');
 
 let setFocusE = document.querySelector("#setupFocus")
 let liveview = document.querySelector("#liveView")
@@ -18,6 +19,25 @@ var preview = document.querySelector("#preview");
 
 const emitter = new EventEmitter();
 const cam = new camera(serialE, emitter);
+const rail = new LinearTrack({name: 'COM21'});
+
+rail.on('ready',()=>{
+  rail.on('home',()=>{
+    console.log('Homed the table');
+    rail.move(10);
+  };
+
+  rail.on('moved',()=>{
+    console.log('Ready for next move');
+  });
+
+  rail.on('leftLimit', ()=>{
+    console.log('bumped the far limit switch and stopped.');
+  })
+
+  rail.home();
+})
+
 
 /**
  * Initializes the preview video.
