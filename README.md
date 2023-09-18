@@ -1,7 +1,3 @@
-Sure, Yusuf! Given that the GitHub repo doesn't have a README yet, here's a sample `README.md` that could help describe the project:
-
----
-
 # 2021-026_Photo_Rig 📸
 
 ## Overview
